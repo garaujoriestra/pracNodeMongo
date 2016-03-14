@@ -9,6 +9,8 @@ var bodyParser = require('body-parser');
 require("./models/user_model.js");
 require("./models/anuncios_model.js");
 
+
+
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var anuncios = require('./routes/anuncios');
