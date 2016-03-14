@@ -9,6 +9,9 @@ var bodyParser = require('body-parser');
 require("./models/user_model.js");
 require("./models/anuncios_model.js");
 
+//Scripts para inicializar la bbdd
+//require("./install_db.js");
+
 
 
 var routes = require('./routes/index');

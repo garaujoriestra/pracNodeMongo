@@ -13,6 +13,13 @@
 			"precio": 50.00,
 			"foto": "iphone.png",
 			"tags": [ "lifestyle", "mobile"]
+		},
+		{
+			"nombre": "Motocicleta",
+			"venta": true,
+			"precio": 530.15,
+			"foto": "moto.jpg",
+			"tags": [ "lifestyle", "motor"]
 		}
 	]
 }
