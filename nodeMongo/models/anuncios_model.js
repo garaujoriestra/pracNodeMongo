@@ -5,16 +5,16 @@ var conn = require("../lib/connectMongoose");
 var mongoose = require('mongoose');
 
 //Creo el esquema
-var usuarioSchema = mongoose.Schema({
- nombre: String,
- email: String,
- clave: String
+var anuncioSchema = mongoose.Schema({
+	nombre: String,
+	venta: Boolean,
+	precio: Number,
+	foto: String,
+	tags: [String]
 });
-
-
-usuarioSchema.statics.list = function(cb){
+anuncioSchema.statics.list = function(cb){
 	//preparamos la query sin ejecutarlo (no ponemo callback a find)
-	var query = User.find();
+	var query = Anuncio.find();
 
 	//añadimos mas parametros a la query
 	query.sort("nombre");	
@@ -30,4 +30,4 @@ usuarioSchema.statics.list = function(cb){
 	});
 };
 //Lo registro en moongose
-var User = mongoose.model("User", usuarioSchema);	
+var Anuncio = mongoose.model("Anuncio", anuncioSchema);	

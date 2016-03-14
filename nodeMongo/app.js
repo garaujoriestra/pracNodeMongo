@@ -7,9 +7,11 @@ var bodyParser = require('body-parser');
 
 //Modelos
 require("./models/user_model.js");
+require("./models/anuncios_model.js");
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var anuncios = require('./routes/anuncios');
 
 var app = express();
 
@@ -29,6 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/anuncios', anuncios);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
