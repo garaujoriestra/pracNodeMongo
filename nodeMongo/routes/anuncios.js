@@ -3,21 +3,19 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require("mongoose");
 var Anuncio = mongoose.model("Anuncio");
-
-/*router.get('/', function(req, res) {
-	Anuncio.list(function(err,rows){
-		if(err){
-			res.json({result: false, err: err});
-			return;
-		}
-		//Devuelvo los datos en vez de a vista, a un json
-		res.json({result: true, rows: rows});
-		return;
-	});
-});*/
-
+function rellenarFiltroBusqueda(req){
+	let filtroBusqueda = {};
+	console.log("objeto: ", filtroBusqueda);
+	if(req.query.venta)
+		filtroBusqueda.venta = req.query.venta;
+	if(req.query.foto)
+		filtroBusqueda.foto = req.query.foto;
+	if(req.query.tag)
+		filtroBusqueda.tag = req.query.tag;
+	return filtroBusqueda;
+}
 router.post("/", function(req, res){
-	var anuncio = new Anuncio(req.body);	
+	let anuncio = new Anuncio(req.body);	
 	anuncio.save(function (err, newRow) {
 		if (err){
 			res.json({result: false, err: err});
@@ -29,37 +27,21 @@ router.post("/", function(req, res){
 	});
 });
 router.get("/", function(req,res){
-	var nombre = req.query.nombre || "";
-	var venta = req.query.venta  || "";
-	var precio = req.query.precio  || "";
-	var foto = req.query.foto  || "";
-	var tags = req.query.tag  || "";
-
-	if(tags){
-		console.log("SIIII TAGSS");
-	}
-	if(precio){
-		console.log("SIIII PRECIOSSSSS");
-	}
-/*	var spliteado = query.split("&");
-	console.log("nombre",query.nombre);
-	for (var i = 0; i < spliteado.length; i++) {
-		var igualdad = spliteado[i].split("=");
-		console.log("["+igualdad[0]+"]");
-		if(igualdad[0] == "nombre "){
-			console.log("ES NOMBREEE");
-		}
-	};*/
-/*	Anuncio.update({_id: req.params.id}, { $set : req.body },{multi:true}, function(err,data){
-		if (err){
+	let filtroBusqueda = rellenarFiltroBusqueda(req);
+	let precio,nombre;
+	if(req.query.precio)
+		precio = req.query.precio;
+	if(req.query.nombre)
+		nombre = new RegExp("^" + req.query.nombre, "i");
+	Anuncio.list(filtroBusqueda,precio,nombre,function(err,rows){
+		if(err){
 			res.json({result: false, err: err});
 			return;
 		}
 		//Devuelvo los datos en vez de a vista, a un json
-		res.json({result: true, rows: data});
+		res.json({result: true, rows: rows});
 		return;
-	});*/
-
+	});
 });
 module.exports = router;
 

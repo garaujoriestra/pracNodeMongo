@@ -1,7 +1,7 @@
 'use strict';
 
 //conectar con mongoose
-var conn = require("../lib/connectMongoose");
+//var conn = require("../lib/connectMongoose");
 var mongoose = require('mongoose');
 
 //Creo el esquema

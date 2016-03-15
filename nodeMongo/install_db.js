@@ -4,13 +4,19 @@ var router = express.Router();
 require("./models/anuncios_model.js");
 var mongoose = require("mongoose");
 var Anuncio = mongoose.model("Anuncio");
+var conn = require("./lib/connectMongoose");
+
 
 //Cargar libreria
 var fs = require("fs");
 
 function LimpiarDB(){
-	Anuncio.remove(function() {
-		console.log("eliminados");
+	Anuncio.remove({},function(err) {
+		if(err){
+			return console.log("Error al eliminar los anuncios");
+		}
+		console.log("eliminados satisfactoriamente" );
+		return;
 	});
 }
 function InsertarAnuncios(anunciosObjeto){

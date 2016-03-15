@@ -1,7 +1,7 @@
 'use strict';
 
 //conectar con mongoose
-var conn = require("../lib/connectMongoose");
+//var conn = require("../lib/connectMongoose");
 var mongoose = require('mongoose');
 
 //Creo el esquema
@@ -10,14 +10,26 @@ var anuncioSchema = mongoose.Schema({
 	venta: Boolean,
 	precio: Number,
 	foto: String,
-	tags: [String]
+	tag: [String]
 });
-anuncioSchema.statics.list = function(cb){
+anuncioSchema.statics.list = function(filtroBusqueda,precio,nombre,cb){
 	//preparamos la query sin ejecutarlo (no ponemo callback a find)
-	var query = Anuncio.find();
-
-	//añadimos mas parametros a la query
-	query.sort("nombre");	
+	if (typeof precio != 'undefined'){
+		let spliteado = precio.split("-");
+		if(spliteado[0] == "")
+			filtroBusqueda.precio = { $lt: spliteado[1]};
+		else if(spliteado[1] == "")
+			filtroBusqueda.precio = { $gt: spliteado[0]};
+		else if(spliteado.length === 1)
+			filtroBusqueda.precio = spliteado[0];
+		else
+			filtroBusqueda.precio = { $gt: spliteado[0], $lt: spliteado[1]};
+		
+	}
+	if(typeof nombre != "undefined")
+		filtroBusqueda.nombre = nombre;
+	let query = Anuncio.find(filtroBusqueda);
+	
 
 	//La ejecutamos
 	query.exec(function(err,rows){

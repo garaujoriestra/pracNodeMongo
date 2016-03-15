@@ -5,21 +5,21 @@
 			"venta": true,
 			"precio": 230.15,
 			"foto": "bici.jpg",
-			"tags": [ "lifestyle", "motor"]
+			"tag": [ "lifestyle", "motor"]
 		},
 		{
 			"nombre": "iPhone 3GS",
 			"venta": false,
 			"precio": 50.00,
 			"foto": "iphone.png",
-			"tags": [ "lifestyle", "mobile"]
+			"tag": [ "lifestyle", "mobile"]
 		},
 		{
 			"nombre": "Motocicleta",
 			"venta": true,
 			"precio": 530.15,
 			"foto": "moto.jpg",
-			"tags": [ "lifestyle", "motor"]
+			"tag": [ "lifestyle", "motor"]
 		}
 	]
 }
