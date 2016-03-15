@@ -5,6 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+
+
 //Modelos
 require("./models/user_model.js");
 require("./models/anuncios_model.js");
@@ -19,6 +21,9 @@ var users = require('./routes/users');
 var anuncios = require('./routes/anuncios');
 
 var app = express();
+
+
+
 
 
 

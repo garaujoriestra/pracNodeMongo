@@ -12,12 +12,9 @@ var usuarioSchema = mongoose.Schema({
 });
 
 
-usuarioSchema.statics.list = function(cb){
+usuarioSchema.statics.list = function(nombre,cb){
 	//preparamos la query sin ejecutarlo (no ponemo callback a find)
-	var query = User.find();
-
-	//añadimos mas parametros a la query
-	query.sort("nombre");	
+	var query = User.find(nombre);
 
 	//La ejecutamos
 	query.exec(function(err,rows){

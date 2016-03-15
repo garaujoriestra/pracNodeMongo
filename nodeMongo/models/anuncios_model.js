@@ -28,7 +28,6 @@ anuncioSchema.statics.list = function(filtroBusqueda,precio,nombre,sort,start,li
 	}
 	if(typeof nombre != "undefined")
 		filtroBusqueda.nombre = nombre;
-
 	let query = Anuncio.find(filtroBusqueda);
 	if(typeof sort != "undefined")
 		query.sort(sort);

@@ -3,9 +3,12 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require("mongoose");
 var Anuncio = mongoose.model("Anuncio");
+var auth = require("../lib/auth");
+
+router.use(auth());
+
 function rellenarFiltroBusqueda(req){
 	let filtroBusqueda = {};
-	console.log("objeto: ", filtroBusqueda);
 	if(req.query.venta)
 		filtroBusqueda.venta = req.query.venta;
 	if(req.query.foto)
