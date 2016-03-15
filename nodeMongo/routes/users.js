@@ -4,8 +4,7 @@ var mongoose = require("mongoose");
 var User = mongoose.model("User");
 var sha = require("sha256");
 
-/*router.get('/', function(req, res) {
-	console.log("si he entrado en el e dentro con ", req);
+router.get('/', function(req, res) {
 	User.list(function(err,rows){
 		if(err){
 			res.json({result: false, err: err});
@@ -15,14 +14,10 @@ var sha = require("sha256");
 		res.json({result: true, rows: rows});
 		return;
 	});
-});*/
-
+});
 router.post("/", function(req, res){
 	var user = new User(req.body);
-	console.log("user info, ", user);
-	console.log("user pass, ", user.clave);
-	user.clave = sha(user.clave);	
-	console.log("user pass22222, ", user.clave);	
+	user.clave = sha(user.clave);		
 	user.save(function (err, newRow) {
 		if (err){
 			res.json({result: false, err: err});
@@ -33,6 +28,4 @@ router.post("/", function(req, res){
 		return;
 	});
 });
-
-
 module.exports = router;

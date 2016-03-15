@@ -24,7 +24,6 @@ anuncioSchema.statics.list = function(filtroBusqueda,precio,nombre,sort,start,li
 			filtroBusqueda.precio = spliteado[0];
 		else
 			filtroBusqueda.precio = { $gt: spliteado[0], $lt: spliteado[1]};
-		
 	}
 	if(typeof nombre != "undefined")
 		filtroBusqueda.nombre = nombre;

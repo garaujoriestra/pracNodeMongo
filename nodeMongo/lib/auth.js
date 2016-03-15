@@ -19,17 +19,14 @@ var fn = function(){
 				res.send(401);
 				return;
 			}
-			console.log("rows:", rows);
 			let pass = sha(userBasic.pass);
 			if(rows[0].clave !== pass){
 				res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
 				res.send(401);
 				return;
 			}
-			console.log(pass);
 			next();
 		});
-		
 	};
 };
 module.exports = fn;
