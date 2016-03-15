@@ -1,7 +1,7 @@
 {
 	"anuncios": [
 		{
-			"nombre": "Bicicleta",
+			"nombre": "bicicleta",
 			"venta": true,
 			"precio": 230.15,
 			"foto": "bici.jpg",
@@ -15,7 +15,7 @@
 			"tag": [ "lifestyle", "mobile"]
 		},
 		{
-			"nombre": "Motocicleta",
+			"nombre": "motocicleta",
 			"venta": true,
 			"precio": 530.15,
 			"foto": "moto.jpg",

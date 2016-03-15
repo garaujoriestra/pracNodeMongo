@@ -28,12 +28,18 @@ router.post("/", function(req, res){
 });
 router.get("/", function(req,res){
 	let filtroBusqueda = rellenarFiltroBusqueda(req);
-	let precio,nombre;
+	let precio,nombre,sort,start,limit;
 	if(req.query.precio)
 		precio = req.query.precio;
 	if(req.query.nombre)
 		nombre = new RegExp("^" + req.query.nombre, "i");
-	Anuncio.list(filtroBusqueda,precio,nombre,function(err,rows){
+	if(req.query.sort)
+		sort = req.query.sort;
+	if(req.query.start)
+		start = req.query.start;
+	if(req.query.limit)
+		start = req.query.limit;
+	Anuncio.list(filtroBusqueda,precio,nombre,sort,start,limit,function(err,rows){
 		if(err){
 			res.json({result: false, err: err});
 			return;

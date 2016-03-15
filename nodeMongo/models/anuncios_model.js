@@ -12,7 +12,7 @@ var anuncioSchema = mongoose.Schema({
 	foto: String,
 	tag: [String]
 });
-anuncioSchema.statics.list = function(filtroBusqueda,precio,nombre,cb){
+anuncioSchema.statics.list = function(filtroBusqueda,precio,nombre,sort,start,limit,cb){
 	//preparamos la query sin ejecutarlo (no ponemo callback a find)
 	if (typeof precio != 'undefined'){
 		let spliteado = precio.split("-");
@@ -28,8 +28,14 @@ anuncioSchema.statics.list = function(filtroBusqueda,precio,nombre,cb){
 	}
 	if(typeof nombre != "undefined")
 		filtroBusqueda.nombre = nombre;
+
 	let query = Anuncio.find(filtroBusqueda);
-	
+	if(typeof sort != "undefined")
+		query.sort(sort);
+	if(typeof start != "undefined")
+		query.skip(parseInt(start));
+	if(typeof limit != "undefined")
+		query.limit(parseInt(limit));
 
 	//La ejecutamos
 	query.exec(function(err,rows){
