@@ -20,6 +20,13 @@
 			"precio": 530.15,
 			"foto": "moto.jpg",
 			"tag": [ "lifestyle", "motor"]
+		},
+		{
+			"nombre": "raqueta",
+			"venta": true,
+			"precio": 30.15,
+			"foto": "raqueta.png",
+			"tag": [ "lifestyle"]
 		}
 	]
 }

@@ -1,8 +1,32 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px "Lucida Grande1", Helvetica, Arial, sans-serif;
+  background-color: #f6f6f6!important;
 }
 
 a {
   color: #00B7FF;
+}
+.container-img{
+	width: 60%;
+	height: 300px;
+	float: right;
+}
+.container-anuncio{
+	display: inline-block;
+	border: 1px solid black;
+	padding: 10px;
+	margin: 10px;
+	width: 100%;
+}
+.container-anuncio:hover{
+	opacity: 0.5;
+}
+.container-anuncio h2{
+	font-size: 35px;
+	color: 
+}
+.container-anuncio h2 label{
+	font-size: 15px;
+	color: 
 }

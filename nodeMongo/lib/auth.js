@@ -11,7 +11,7 @@ var fn = function(){
 		var query = User.find({nombre: userBasic.name});
 		query.exec(function(err,rows){
 			if(err){
-				cb(err);
+				res.json({result: false, err: err});
 				return;
 			}
 			if(rows.length === 0){

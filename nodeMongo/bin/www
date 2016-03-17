@@ -25,7 +25,7 @@ app.set('port', port);
 /**
  * Create HTTP server.
  */
- let cluster = require("cluster");
+let cluster = require("cluster");
 if (cluster.isMaster){
   let numCPUS = require("os").cpus().length;
   for (let i = 0; i < numCPUS; i++) {

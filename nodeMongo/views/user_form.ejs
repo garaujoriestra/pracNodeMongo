@@ -2,16 +2,44 @@
 <html>
   <head>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   </head>
   <body>
-  	<ul>
-  	<% users.forEach(function(user){%>
-  		<li>
-  			Nombre <input type="text" value="<%= user.name %>">
-    		Edad <input type="text" value="<%= user.age %>">
-    	</li>
-  	<% }) %>
-  	</ul>
-    
+    <div class="container">
+      <div class="row">
+        <table class="table table-hover table-bordered table-striped">
+              <tr class="info">
+                  <td>
+                    ID
+                  </td>
+                  <td>
+                    Nombre
+                  </td>
+                  <td>
+                    Email
+                  </td>
+                  <td>
+                    Clave
+                  </td>
+              </tr>
+           <% users.forEach(function(user){%> 
+              <tr >
+                  <td >
+                    <%= user._id %>
+                  </td>
+                  <td >
+                    <%= user.nombre %>
+                  </td>
+                  <td>
+                    <%= user.email %>
+                  </td>
+                  <td>
+                    <%= user.clave %>
+                  </td>
+              </tr>
+           <% }) %>
+        </table>
+      </div>
+    </div>
   </body>
 </html>

@@ -1,5 +1,5 @@
 # pracNodeMongo
-Práctica final el curso de nodejs y MongoDb
+API REST con nodejs & MondoDB
 
 ## Setup de entorno de desarrollo
 
@@ -15,7 +15,14 @@ A continuación hay que arrancar una script que inicializa una base de datos de 
 ```
 $ node ./install_bd.js
 ```
+## Changelog
 
+### v.1.0.0 - 2016-03-17
+
+* Funcionamiento básico de la app
+* Users
+* Anuncios
+* ApiDoc
 
 
 
