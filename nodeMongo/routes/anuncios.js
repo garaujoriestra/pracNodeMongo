@@ -1,4 +1,3 @@
-
 'use strict';
 var express = require('express');
 var router = express.Router();
@@ -6,9 +5,9 @@ var mongoose = require("mongoose");
 var Anuncio = mongoose.model("Anuncio");
 var auth = require("../lib/auth");
 
-router.use(auth());
+router.use(auth());  //Anuncios necesita autentificación.
 
-function rellenarFiltroBusqueda(req){
+function rellenarFiltroBusqueda(req){  //Función auxiliar para rellenar el array del filtro.
 	let filtroBusqueda = {};
 	if(req.query.venta)
 		filtroBusqueda.venta = req.query.venta;
@@ -40,7 +39,7 @@ function rellenarFiltroBusqueda(req){
  *		 "error": err
  *     }
  */
-router.post("/", function(req, res){
+router.post("/", function(req, res){  //Función que inserta un anuncio en la bbdd.
 	let anuncio = new Anuncio(req.body);	
 	anuncio.save(function (err, newRow) {
 		if (err){
@@ -52,7 +51,7 @@ router.post("/", function(req, res){
 		return;
 	});
 });
-function recuperarTags(rows){
+function recuperarTags(rows){   //Función auxiliar para recuperar los Tags sin que se repitan.
 	let tags =  new Array();
 	let i; 
 	for (let tag in rows) {
@@ -99,7 +98,7 @@ function recuperarTags(rows){
  *		 "error": err
  *     }
  */
-router.get("/json", function(req,res){
+router.get("/json", function(req,res){   //Función get para recibir la información de los anuncios de la bbdd en formato json.
 	let filtroBusqueda = rellenarFiltroBusqueda(req);
 	let precio,nombre,sort,start,limit;
 	if(req.query.precio)
@@ -112,7 +111,7 @@ router.get("/json", function(req,res){
 		start = req.query.start;
 	if(req.query.limit)
 		start = req.query.limit;
-	Anuncio.list(filtroBusqueda,precio,nombre,sort,start,limit,function(err,rows){
+	Anuncio.list(filtroBusqueda,precio,nombre,sort,start,limit,function(err,rows){  //Filtra la busqueda con los filtros intruducidos.
 		if(err){
 			res.json({result: false, err: err});
 			return;
@@ -140,7 +139,7 @@ router.get("/json", function(req,res){
  * @apiSuccess {[String]} tag  Tags de las categorías del artículo.
  * @apiError Anuncios no encontrado.
  */
-router.get("/", function(req,res){
+router.get("/", function(req,res){  //Función get que devuelve los anuncios en un listado.
 	let filtroBusqueda = rellenarFiltroBusqueda(req);
 	let precio,nombre,sort,start,limit;
 	if(req.query.precio)
@@ -154,7 +153,7 @@ router.get("/", function(req,res){
 	if(req.query.limit)
 		start = req.query.limit;
 	Anuncio.list(filtroBusqueda,precio,nombre,sort,start,limit,function(err,rows){
-		res.render('anuncios_vista',{anuncios: rows} );
+		res.render('anuncios_vista',{anuncios: rows} );  //Los renderia en la vista anuncios_vista.
 	});
 });
 module.exports = router;

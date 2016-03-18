@@ -25,7 +25,7 @@ var sha = require("sha256");
  *		 "error": err
  *     }
  */
-router.get('/json', function(req, res) {
+router.get('/json', function(req, res) {  //Función get para recibir los usuarios de la bbdd en json.
 	User.list(function(err,rows){
 		if(err){
 			res.json({result: false, err: err});
@@ -53,7 +53,7 @@ router.get('/json', function(req, res) {
  * @apiError Users no encontrado.
  * @apiVersion 1.0.0
  */
-router.get('/', function(req, res) {
+router.get('/', function(req, res) {  //Función get para recibir los usuarios de la bbdd con la vista user_form.
 	User.list(function(err,rows){
 		if (err) {
 			res.render("error",{err: error});
@@ -82,25 +82,31 @@ router.get('/', function(req, res) {
  *     }
  */
 router.post("/", function(req, res){
-	var query = User.find({nombre: req.body.nombre});
+	var query = User.find({nombre: req.body.nombre}); //Compruebo si ya existe alguien con ese usuario.
 	query.exec(function(err,rows){
 		if(rows.length === 0){
-			var user = new User(req.body);
-			user.clave = sha(user.clave);		
-			user.save(function (err, newRow) {
-				if (err){
-					res.json({result: false, err: err});
+			var queryEmail = User.find({email: req.body.email}); //Compruebo si ya existe alguien con ese email.
+			queryEmail.exec(function(err,rows){
+				if(rows.length === 0){
+					var user = new User(req.body); //Creo usuario
+					user.clave = sha(user.clave);	//Hasheo la clave	
+					user.save(function (err, newRow) {  //Inserto el usuario
+						if (err){
+							res.json({result: false, err: err});
+							return;
+						}
+						res.json({result: true, rows: newRow});
+						return;
+					});
+				}else{
+					res.json({result: false, err: "Ya existia un usuario con ese email"});
 					return;
 				}
-				//Devuelvo los datos en vez de a vista, a un json
-				res.json({result: true, rows: newRow});
-				return;
 			});
 		}else{
 			res.json({result: false, err: "Ya existia un usuario con ese nombre"});
 			return;
 		}
 	});
-
 });
 module.exports = router;

@@ -1,18 +1,17 @@
 'use strict';
 
 //conectar con mongoose
-var mongoose = require('mongoose');
+let mongoose = require('mongoose');
 
 //Creo el esquema
-var usuarioSchema = mongoose.Schema({
+let usuarioSchema = mongoose.Schema({
  nombre: String,
  email: String,
  clave: String
 });
+//Lista para los Usuarios.
 usuarioSchema.statics.list = function(cb){
-	//preparamos la query sin ejecutarlo (no ponemo callback a find)
-	var query = User.find();
-	//La ejecutamos
+	let query = User.find();
 	query.exec(function(err,rows){
 		if(err){
 			cb(err);
@@ -23,4 +22,4 @@ usuarioSchema.statics.list = function(cb){
 	});
 };
 //Lo registro en moongose
-var User = mongoose.model("User", usuarioSchema);	
+let User = mongoose.model("User", usuarioSchema);	

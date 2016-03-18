@@ -22,11 +22,31 @@
 			"tag": [ "lifestyle", "motor"]
 		},
 		{
+			"nombre": "boli bic",
+			"venta": false,
+			"precio": 1.15,
+			"foto": "bic.jpg",
+			"tag": [ "lifestyle"]
+		},
+		{
 			"nombre": "raqueta",
 			"venta": true,
 			"precio": 30.15,
 			"foto": "raqueta.png",
 			"tag": [ "lifestyle"]
+		}
+	],
+
+	"usuarios": [
+		{
+			"nombre": "Guillermo",
+			"email": "guillermo.araujo@babel.es",
+			"clave": "secreta"
+		},
+		{
+			"nombre": "Kevin",
+			"email": "kevin.oliva@babel.es",
+			"clave": "supersecreta"
 		}
 	]
 }

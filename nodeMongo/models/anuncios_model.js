@@ -1,19 +1,19 @@
 'use strict';
 
 //conectar con mongoose
-//var conn = require("../lib/connectMongoose");
-var mongoose = require('mongoose');
+let mongoose = require('mongoose');
 
 //Creo el esquema
-var anuncioSchema = mongoose.Schema({
+let anuncioSchema = mongoose.Schema({
 	nombre: String,
 	venta: Boolean,
 	precio: Number,
 	foto: String,
 	tag: [String]
 });
+//Lista de los Anuncios
 anuncioSchema.statics.list = function(filtroBusqueda,precio,nombre,sort,start,limit,cb){
-	//preparamos la query sin ejecutarlo (no ponemo callback a find)
+	//Comprobación si recibimos el parametro precio.
 	if (typeof precio != 'undefined'){
 		let spliteado = precio.split("-");
 		if(spliteado[0] == "")
@@ -28,7 +28,7 @@ anuncioSchema.statics.list = function(filtroBusqueda,precio,nombre,sort,start,li
 	if(typeof nombre != "undefined")
 		filtroBusqueda.nombre = nombre;
 	
-	let query = Anuncio.find(filtroBusqueda);
+	let query = Anuncio.find(filtroBusqueda);  //Hacemos la búsqueda de los anuncios con los filtros introducidos.
 	if(typeof sort != "undefined")
 		query.sort(sort);
 	if(typeof start != "undefined")
@@ -36,7 +36,6 @@ anuncioSchema.statics.list = function(filtroBusqueda,precio,nombre,sort,start,li
 	if(typeof limit != "undefined")
 		query.limit(parseInt(limit));
 
-	//La ejecutamos
 	query.exec(function(err,rows){
 		if(err){
 			cb(err);
@@ -47,4 +46,4 @@ anuncioSchema.statics.list = function(filtroBusqueda,precio,nombre,sort,start,li
 	});
 };
 //Lo registro en moongose
-var Anuncio = mongoose.model("Anuncio", anuncioSchema);	
+let Anuncio = mongoose.model("Anuncio", anuncioSchema);	

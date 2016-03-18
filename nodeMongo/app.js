@@ -11,11 +11,11 @@ var bodyParser = require('body-parser');
 require("./models/user_model.js");
 require("./models/anuncios_model.js");
 
-//conexion bbdd
+//Conexión MondoDB
 var conn = require("./lib/connectMongoose");
 
 
-
+//Routes
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var anuncios = require('./routes/anuncios');
